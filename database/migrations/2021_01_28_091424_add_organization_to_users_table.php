@@ -14,22 +14,16 @@ class AddOrganizationToUsersTable extends Migration
     public function up()
     {
         Schema::table('organizations', function (Blueprint $table) {
-            $table->unsignedBigInteger('created_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
-
-            $table->unsignedBigInteger('updated_by')->nullable();
-            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('created_by');
+			$table->integer('updated_by');
         });
 
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('organization_id')->nullable();
             $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
 
-            $table->unsignedBigInteger('created_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
-            
-            $table->unsignedBigInteger('updated_by')->nullable();
-            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
+			$table->integer('created_by');
+			$table->integer('updated_by');
         
         });
 

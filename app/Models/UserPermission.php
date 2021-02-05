@@ -30,6 +30,14 @@ class UserPermission extends Model
         ];
     }
 
+	public static function search($query)
+    {
+        return empty($query) ? static::query()
+            : static::where('role', 'like', '%'.$query.'%')
+                ->orWhere('route_name', 'like', '%'.$query.'%')
+                ->orWhere('created_at', 'like', '%'.$query.'%');
+    }
+	
     /**
      * Checks if the current user role has access
      *

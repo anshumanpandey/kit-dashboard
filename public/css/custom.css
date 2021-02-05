@@ -1,0 +1,15 @@
+.uppercase {
+    text-transform: capitalize;
+}
+
+.barcode-img{
+	padding: 10px;
+}
+
+table td.border.px-4.py-2 {
+    text-align: center;
+}
+
+table td.border.px-4.py-2 button {
+    padding: 5px;
+}

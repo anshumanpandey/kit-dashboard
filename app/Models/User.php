@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role','organization_id','current_team_id'
+        'name', 'email', 'password', 'role','organization_id','current_team_id', 'created_by', 'updated_by'
     ];
 
     /**
@@ -57,6 +57,22 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+	
+	
+	
+	public static function search($query)
+    {
+        return empty($query) ? static::query()
+            : static::where('name', 'like', '%'.$query.'%')
+                ->orWhere('email', 'like', '%'.$query.'%');
+    }
+	
+	
+	
+	
+	
+	
+	
 
     /**
      * The list of user roles

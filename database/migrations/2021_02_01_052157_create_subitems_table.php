@@ -14,6 +14,7 @@ class CreateSubitemsTable extends Migration
     public function up()
     {
         Schema::create('subitems', function (Blueprint $table) {
+			$table->engine = 'InnoDB';
             $table->id();
 			
 			$table->string('serialnumber', 191);
@@ -36,12 +37,9 @@ class CreateSubitemsTable extends Migration
 			
             $table->unsignedBigInteger('organisation_id');
             $table->foreign('organisation_id')->references('id')->on('organizations')->onDelete('cascade');
-
-            $table->unsignedBigInteger('created_by');
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
-
-            $table->unsignedBigInteger('updated_by');
-            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
+			
+			$table->integer('created_by');
+			$table->integer('updated_by');
 			
             $table->timestamps();
         });

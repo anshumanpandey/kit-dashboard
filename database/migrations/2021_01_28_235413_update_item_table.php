@@ -14,7 +14,7 @@ class UpdateItemTable extends Migration {
     public function up() {
         Schema::table('items', function (Blueprint $table) {
             
-            $table->string('cable_lenght')->nullable()->change();
+            $table->string('cable_length')->nullable()->change();
             $table->string('make')->nullable()->change();
             $table->string('model')->nullable()->change();
         });

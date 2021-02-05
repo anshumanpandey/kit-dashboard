@@ -14,6 +14,7 @@ class CreateTeamUserTable extends Migration
     public function up()
     {
         Schema::create('team_user', function (Blueprint $table) {
+			$table->engine = 'InnoDB';
             $table->id();
             $table->foreignId('team_id');
             $table->foreignId('user_id');

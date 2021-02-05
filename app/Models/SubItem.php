@@ -16,18 +16,29 @@ class Subitem extends Model
         'date_of_purchase',
         'warranty_expiry_period',
         'receipt_url',
-        'barcode_no',
-        'barcode_url',
         'condition',
         'status',
         'notes',
-        'code',
+        'available_qty',
         'item_id',
         'organisation_id',
         'created_by',
         'updated_by'
     ];
     
+	
+	public static function search($query)
+    {
+        return empty($query) ? static::query()
+            : static::where('serialnumber', 'like', '%'.$query.'%')
+                ->orWhere('quantity', 'like', '%'.$query.'%')
+                ->orWhere('date_of_purchase', 'like', '%'.$query.'%')
+                ->orWhere('warranty_expiry_period', 'like', '%'.$query.'%')
+                ->orWhere('status', 'like', '%'.$query.'%')
+                ->orWhere('condition', 'like', '%'.$query.'%');
+    }
+	
+	
     public static function getConditions(){
         return ['excellent'=>'Excellent','good'=>'Good','ok'=>'Ok','needrepair'=>'Needrepair','broken'=>'Broken'];
     }
@@ -38,6 +49,10 @@ class Subitem extends Model
     
      public static function getlinkedsubitems(){
         return Subitem::all()->where('organisation_id', '=', Auth::user()->organization_id);
+    }
+	
+	public function items() {
+        return $this->belongsTo(Item::class, 'item_id');
     }
     
 }

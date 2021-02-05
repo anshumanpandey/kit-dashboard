@@ -10,7 +10,7 @@ class Item extends Model {
     use HasFactory;
 
     protected $fillable = [
-        'name', 'cable_length', 'make', 'role', 'model', 'status', 'organisation_id', 'created_by', 'updated_by', 'item_type_id'
+        'name', 'cable_length', 'make', 'model', 'status', 'organisation_id', 'created_by', 'updated_by', 'item_type_id'
     ];
 
     public static function getlinkeditems(){
@@ -25,6 +25,13 @@ class Item extends Model {
         return $this->hasMany(Linkeditem::class, 'item_id');
     }
 	
-	
+	public static function search($query)
+    {
+        return empty($query) ? static::query()
+            : static::where('name', 'like', '%'.$query.'%')
+                ->orWhere('cable_length', 'like', '%'.$query.'%')
+                ->orWhere('make', 'like', '%'.$query.'%')
+                ->orWhere('model', 'like', '%'.$query.'%');
+    }
 	
 }

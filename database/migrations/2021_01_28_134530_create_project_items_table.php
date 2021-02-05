@@ -14,6 +14,7 @@ class CreateProjectItemsTable extends Migration
     public function up()
     {
         Schema::create('project_items', function (Blueprint $table) {
+			$table->engine = 'InnoDB';
             $table->id();
             
             $table->integer('item_id');

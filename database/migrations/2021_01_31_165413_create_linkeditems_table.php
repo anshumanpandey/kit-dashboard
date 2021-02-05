@@ -14,6 +14,7 @@ class CreateLinkeditemsTable extends Migration
     public function up()
     {
         Schema::create('linkeditems', function (Blueprint $table) {
+			$table->engine = 'InnoDB';
             $table->id();
 			
 			$table->unsignedBigInteger('item_id');
@@ -22,11 +23,8 @@ class CreateLinkeditemsTable extends Migration
 			$table->unsignedBigInteger('linked_item_id');
             $table->foreign('linked_item_id')->references('id')->on('items')->onDelete('cascade');
 			
-			$table->unsignedBigInteger('created_by');
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
-
-            $table->unsignedBigInteger('updated_by');
-            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
+			$table->integer('created_by');
+			$table->integer('updated_by');
 			
             $table->timestamps();
         });

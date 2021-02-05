@@ -14,6 +14,7 @@ class CreateNavigationMenusTable extends Migration
     public function up()
     {
         Schema::create('navigation_menus', function (Blueprint $table) {
+			$table->engine = 'InnoDB';
             $table->id();
             $table->integer('sequence');
             $table->enum('type', ['SidebarNav', 'TopNav']);

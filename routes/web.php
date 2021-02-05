@@ -3,6 +3,10 @@
 use App\Http\Livewire\Frontpage;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\FrontController;
+
+
+use App\Http\Controllers\Api\ProjectsController;
 /*
   |--------------------------------------------------------------------------
   | Web Routes
@@ -13,6 +17,10 @@ use Illuminate\Support\Facades\Route;
   | contains the "web" middleware group. Now create something great!
   |
  */
+
+Route::get('/cron', [FrontController::class, 'cron']);
+Route::get('/api', [ProjectsController::class, 'index']);
+
 
 Route::group(['middleware' => [
         'auth:sanctum',

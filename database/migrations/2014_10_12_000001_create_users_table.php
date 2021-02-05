@@ -14,6 +14,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+			$table->engine = 'InnoDB';
             $table->id();
             $table->string('name');
 			$table->string('role')->nullable();
@@ -32,7 +33,7 @@ class CreateUsersTable extends Migration
 			'name' => 'Admin',
 			'email' => 'admin@yopmail.com',
 			'email_verified_at' => date('Y-m-d H:i:s'),
-			'password' => Hash::make('12345678')
+			'password' => Hash::make('kit@123%')
 		]);
     }
 

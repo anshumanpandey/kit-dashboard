@@ -14,13 +14,12 @@ class CreateItemTypesTable extends Migration
     public function up()
     {
         Schema::create('item_types', function (Blueprint $table) {
+			$table->engine = 'InnoDB';
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('created_by');
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
-
-            $table->unsignedBigInteger('updated_by');
-            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
+            
+			$table->integer('created_by');
+			$table->integer('updated_by');
 
             $table->timestamps();
         });

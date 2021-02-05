@@ -14,6 +14,7 @@ class CreatePagesTable extends Migration
     public function up()
     {
         Schema::create('pages', function (Blueprint $table) {
+			$table->engine = 'InnoDB';
             $table->id();
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
